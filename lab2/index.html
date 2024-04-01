@@ -77,9 +77,30 @@
                     };
                 };
 
-            // adding polygons and pins from geojsons imported in <head>
+            // adding polygons from geojsons imported in <head>
             var provinces = L.geoJson(provinces, {style:style}).addTo(map);
-            var covidData = new L.geoJson(covidData).addTo(map);
+
+            // adding circles for covid data
+            var minValue = 100;
+            var minRadius = 5;
+
+            function calcRadius(val) {
+                return 0.9 * Math.pow(val/minValue, .7) * minRadius;
+            }
+
+            var covidData = new L.geoJson(covidData, {
+                pointToLayer: function(feature, ll){
+                    return L.circleMarker(ll, {
+                        color: '#000000',
+                        opacity: 1,
+                        weight: 2,
+                        fillColor: '#808080',
+                        fillOpacity: .5,
+                        radius: calcRadius(feature.properties.covid) 
+
+                    });
+                }
+            }).addTo(map); // circles
 
             // adding map controls to toggle between layers
             var basemaps = {
