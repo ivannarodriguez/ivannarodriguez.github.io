@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -18,27 +19,88 @@
     <script src="https://js.arcgis.com/4.29/"></script>
     <script>
         require([
-            "esri/Map", 
+            "esri/Map",
             "esri/layers/TileLayer",
             "esri/layers/GeoJSONLayer",
-            "esri/views/MapView"
-        ], function (Map, TileLayer, GeoJSONLayer, MapView) {
-            
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/Legend"
+        ], function (Map, TileLayer, GeoJSONLayer, MapView, FeatureLayer, Legend) {
+
             var thebasemap = new TileLayer({
                 url: "https://gisext.lincoln.ne.gov/arcgis/rest/services/GIS/LancoBasemap/MapServer/"
             });
 
-            const url = "https://rcshepard.github.io/downtownlincoln.geojson";
+            // https://developers.arcgis.com/documentation/common-data-types/renderer-objects.htm
+            const renderer = {
+                type: "class-breaks",
+                field: "CNTASSDVAL",
+                classBreakInfos: [
+                    {
+                        minValue: 0,
+                        maxValue: 100000,
+                        symbol: {
+                            type: "simple-marker",
+                            color: "red", // change symbol color to red
+                            outline: {
+                                color: "white" // change symbol outline to white
+                            },
+                            size: 7 
+                        },
+                        label: "Low" // change graduated symbol labels
+                    },
+                    {
+                        minValue: 100000,
+                        maxValue: 500000,
+                        symbol: {
+                            type: "simple-marker",
+                            color: "red",
+                            outline: {
+                                color: "white"
+                            },
+                            size: 17
+                        },
+                        label: "Medium"
+                    },
+                    {
+                        minValue: 500000,
+                        maxValue: 1000000,
+                        symbol: {
+                            type: "simple-marker",
+                            color: "red",
+                            outline: {
+                                color: "white"
+                            },
+                            size: 26
+                        },
+                        label: "High"
+                    }
+                ]
+            };
+
+            const url = " https://rcshepard.github.io/downtownlincoln.geojson";
 
             const geojsonLayer = new GeoJSONLayer({
                 url: url,
-                copyright: "GISC27105"
-                //renderer info would go here, and you add a comma to the field above
+                copyright: "© Ivanna", // add copyright statement
+                renderer: renderer
+            });
+
+            var featureLayer = new FeatureLayer({
+                url: "https://gisext.lincoln.ne.gov/arcgis/rest/services/Parks/Park_Boundaries/MapServer/0"
             });
 
             var map = new Map({
                 layers: [thebasemap, geojsonLayer]
             });
+
+            map.add(featureLayer);
+
+            // add new layer: Existing Land Use (Planning) 
+            var newfeatureLayer = new FeatureLayer({
+                url: "https://gisext.lincoln.ne.gov/arcgis/rest/services/GIS/LandUse/MapServer/1"
+            });
+            map.add(newfeatureLayer);
 
             var view = new MapView({
                 container: "viewDiv",
@@ -46,6 +108,16 @@
                 zoom: 16,
                 center: [-96.68, 40.81] // longitude, latitude – change this as needed
             });
+
+
+            const legend = new Legend({
+                view: view,
+                layerInfos: [{
+                    layer: geojsonLayer,
+                    title: "Assignment 4 Symbols"
+                }]
+            });
+            view.ui.add(legend, "bottom-right"); // move legend to bottom-right
         });
     </script>
 </head>
