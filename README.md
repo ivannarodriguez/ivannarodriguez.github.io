@@ -1,2 +1,2 @@
 # ivannarodriguez.github.io
-repository for web mapping course
+Repository for my personal website, plus all webmapping course assignments
