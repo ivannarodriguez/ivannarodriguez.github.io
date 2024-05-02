@@ -28,6 +28,7 @@
             /* set background size to cover to avoid any issue with gradient stretch- cover entire page */
             background-size: cover;
             margin: 0;
+            scroll-behavior: smooth; /* enable smooth scrolling for navbar */
         }
 
         .navbar {
@@ -53,6 +54,7 @@
             display: block; 
             margin: 0 auto 20px;
         }
+
     </style>
 </head>
 
@@ -60,7 +62,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Ivanna Rodríguez</a>
+            <a class="navbar-brand" href="/">Ivanna Rodríguez</a>
 
             <!-- navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -72,13 +74,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Work</a>
+                        <a class="nav-link" href="#projects">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#connect">Connect</a>
                     </li>
                 </ul>
             </div>
@@ -86,7 +88,7 @@
     </nav>
 
     <!-- main  -->
-    <div class="container pt-5 text-center">
+    <div id="about" class="container pt-5 text-center">
         <!-- Circular image -->
         <img src="img/photo.jpg" alt="A black and white profile picture displaying a woman sipping on coffee" class="circular-img">
     
@@ -94,10 +96,35 @@
         <h1 id="typed-heading"></h1>
     
         <!-- Paragraphs -->
-        <p>I'm a graduate student in <a href="https://capp.uchicago.edu/" target="_blank">Computer Science and Public
-                Policy</a> at UChicago, and a full-stack data scientist using analytics to encourage inclusive and
-            sustainable socioeconomic development.</p>
-        <p>Site in progress...</p>
+        <p> I'm a full-stack data scientist passionate about designing, building, and utilizing 
+            analytics tools to encourage inclusive and sustainable socioeconomic development. 
+            I'm also a 
+            graduate student in <a href="https://capp.uchicago.edu/" target="_blank">Computer
+            Science and Public Policy</a> at the University of Chicago.</p> 
+            
+        <p>I currently work as a Research Engineer in the Department of Ecology & 
+            Evolution with <a href="https://eegraduate.uchicago.edu/faculty/luis-bettencourt-phd">
+            Luis Betterncourt's</a> Urban Science Lab where we use information theory methods to study 
+            spatial inequality within cities.</p>
+    </div>
+
+    <!-- projects section -->
+    <div id="projects" class="container pt-5 text-center">
+        <h4>Projects</h4>
+        <p>In progress...</p>
+    </div>
+
+    <!-- Connect section -->
+    <div id="connect" class="container pt-5 text-center">
+        <h4>Connect</h4>
+        <div>
+            <p>
+                <a href="https://www.linkedin.com/in/ivanna-rodriguezrz/" target="_blank">LinkedIn</a>
+            </p>
+            <p>
+                <a href="https://github.com/ivannarodriguez" target="_blank">GitHub</a>
+            </p>
+        </div>
     </div>
 
     <!-- bootstrap js and dependencies -->
