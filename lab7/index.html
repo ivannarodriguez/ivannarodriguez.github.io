@@ -47,7 +47,6 @@
                                 value >= -9 ? '#ef8a62' :
                                     '#b2182b';
         }
-        
 
         var background = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -61,14 +60,30 @@
         var timeline;
         var timelineControl;
 
+        // add circles
+        var minValue = 1;
+        var minRadius = 5;
+
+        function calcRadius(val) {
+                return 0.9 * Math.pow(val / minValue, .7) * minRadius;
+            }
+
         function onLoadData(data) {
             timeline = L.timeline(data, {
                 style: function (data) {
                     return {
                         stroke: false,
                         color: getColorFor(data.properties.DIFF),
-                        fillOpacity: 0.9,
+                        fillOpacity: 0.9
                     };
+                },
+                pointToLayer: function (data, ll) {
+                    var diff = (data.properties.EV);
+                    return L.circleMarker(ll, {
+                        radius: calcRadius((data.properties.EV) / 2),
+                        color: getColorFor(data.properties.DIFF),
+                        fillColor: getColorFor(data.properties.DIFF),
+                    }).bindPopup('<p>' + 'State:' + data.properties.NAME + '</p>');
                 },
                 waitToUpdateMap: true,
                 onEachFeature: function (feature, layer) {
@@ -87,7 +102,7 @@
             timelineControl.addTimelines(timeline);
         }
     </script>
-    <script src="/lab7/final_centroids.jsonp"></script>
+    <script src="lab7/final_centroids.jsonp"></script>
 
 </body>
 
