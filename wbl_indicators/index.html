@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WBI Indicators Through The Years</title>
 
+    <!-- include wbl data -->
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/wbl_index.js"></script>
+
     <!-- include leaflet css -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     
     <!-- leaflet javascript -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- timeline -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.timeline/dist/leaflet.timeline.css" />
+    <script src="https://unpkg.com/leaflet.timeline/dist/leaflet.timeline.js"></script>
 
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- large datasets stored with github lfs -->
 
     <style>
         #map {
@@ -56,6 +64,41 @@
             });
         
         map.zoomControl.setPosition('topright');
+
+        var wbl_index_data = wbl_index; // Assuming wbl_index is defined in your external JavaScript file
+
+            // Create GeoJSON layer and add it to the map
+            var geojsonLayer = L.geoJSON(wbl_index_data, {
+                style: function (feature) {
+                    // Define styling based on feature properties
+                    return {
+                        fillColor: getColor(feature.properties.value),
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        fillOpacity: 0.7
+                    };
+                },
+                onEachFeature: function (feature, layer) {
+                    // Define popup content
+                    var popupContent = "Economy: " + feature.properties.economy + "<br>Value: " + feature.properties.value;
+                    layer.bindPopup(popupContent);
+                }
+            }).addTo(map);
+
+            // Function to get color based on value
+            function getColor(value) {
+                // Define color range and return color based on value
+                // You can modify this function to define your own color range
+                return value > 90 ? '#800026' :
+                    value > 80 ? '#BD0026' :
+                        value > 70 ? '#E31A1C' :
+                            value > 60 ? '#FC4E2A' :
+                                value > 50 ? '#FD8D3C' :
+                                    value > 40 ? '#FEB24C' :
+                                        value > 30 ? '#FED976' :
+                                            '#FFEDA0';
+            }
 
             
     </script>
