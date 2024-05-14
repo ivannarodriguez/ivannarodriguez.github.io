@@ -1,3 +1,4 @@
 data/wbl_index.geojson filter=lfs diff=lfs merge=lfs -text
 data/workplace.geojson filter=lfs diff=lfs merge=lfs -text
 data/pay.geojson filter=lfs diff=lfs merge=lfs -text
+data/wbl_index.js filter=lfs diff=lfs merge=lfs -text
