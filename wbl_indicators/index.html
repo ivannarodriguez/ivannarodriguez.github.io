@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WBI Indicators Through The Years</title>
+
+    <!-- include leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <!-- leaflet javascript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        #map {
+            height: 600px;
+        }
+        
+        .custom-control {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: black;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 2px;
+            max-width: calc(100% - 220px);
+            font-family: 'Roboto', sans-serif;
+            z-index: 1000; /* to ensure it's above the map */
+        }
+    </style>
+
+</head>
+<body>
+    <div id="map"></div>
+
+    <div class="custom-control">
+        <h2>WBI Indicators Through The Years</h2>
+        <p>A short paragraph description goes here...</p>
+    </div>
+
+    <script>
+        // add basemap
+        var basemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+            });
+        
+        var map = L.map("map", {
+                layers: [basemap],
+                center: new L.LatLng(17.407264062590677, -42.04405811231499),
+                zoom: 3,
+            });
+        
+        map.zoomControl.setPosition('topright');
+
+            
+    </script>
+</body>
+</html>
