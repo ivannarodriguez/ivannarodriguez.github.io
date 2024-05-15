@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WBI Indicators Through The Years</title>
+    <title>WBL Indicators Through The Years</title>
 
     <!-- include wbl data -->
-    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/wbl_index.js"></script>
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/africa_UNIX_wbl_index.js"></script>
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/oceania_UNIX_wbl_index.js"></script>
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/america_UNIX_wbl_index.js"></script>
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/europe_UNIX_wbl_index.js"></script>
+    <script src="https://ivannarodriguez.github.io/wbl_indicators/data/asia_UNIX_wbl_index.js"></script>
+
 
     <!-- include leaflet css -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -20,12 +25,11 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- large datasets stored with github lfs -->
-
     <style>
         #map {
-            height: 600px;
-        }
+            width: 100vw;
+            height: 100vh;
+        }   
         
         .custom-control {
             position: absolute;
@@ -40,18 +44,90 @@
             font-family: 'Roboto', sans-serif;
             z-index: 1000; /* to ensure it's above the map */
         }
+
+        .leaflet-bottom.leaflet-left {
+            width: 100%;
+        }
+    
+        .leaflet-control-container .leaflet-timeline-controls {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        .leaflet-container .leaflet-interactive {
+            outline: none;
+        }
+
+        .legend {
+            position: absolute;
+            left: 50px;
+            top:50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 254, 254, 0.717);
+            padding: 10px;
+            font-family: 'Roboto', sans-serif;
+            color:black;
+            z-index: 1000;
+        }
+
+        .legend-item {
+            margin-bottom: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+        }
     </style>
 
 </head>
 <body>
     <div id="map"></div>
 
+    <!-- top left title black box -->
     <div class="custom-control">
-        <h2>WBI Indicators Through The Years</h2>
+        <h2>WBL Indicators Through The Years</h2>
         <p>A short paragraph description goes here...</p>
     </div>
 
+    <!-- legend -->
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FFE5E5;"></div>
+            > 90
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FFCCCC;"></div>
+            66 - 90
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FFB2B2;"></div>
+            51 - 65
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FF7F7F;"></div>
+            31 - 50
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #8B4513;"></div>
+            <= 30 </div>
+        </div>
+
+
     <script>
+        // get color based on value -- edit these
+        function getColor(value) {
+            return value > 90 ? '#FFE5E5' :
+                value > 65 ? '#FFCCCC' :
+                    value > 50 ? '#FFB2B2' :
+                        value > 30 ? '#FF7F7F' :
+                            '#8B4513'; 
+        }
+
         // add basemap
         var basemap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
@@ -65,42 +141,38 @@
         
         map.zoomControl.setPosition('topright');
 
-        var wbl_index_data = wbl_index; // Assuming wbl_index is defined in your external JavaScript file
+        var timelineData = {
+            type: 'FeatureCollection',
+            features: africa_wbl_index.concat(oceania_wbl_index, 
+                            america_wbl_index, europe_wbl_index, asia_wbl_index)
+        };
 
-            // Create GeoJSON layer and add it to the map
-            var geojsonLayer = L.geoJSON(wbl_index_data, {
-                style: function (feature) {
-                    // Define styling based on feature properties
-                    return {
-                        fillColor: getColor(feature.properties.value),
-                        weight: 1,
-                        opacity: 1,
-                        color: 'white',
-                        fillOpacity: 0.7
-                    };
-                },
-                onEachFeature: function (feature, layer) {
-                    // Define popup content
-                    var popupContent = "Economy: " + feature.properties.economy + "<br>Value: " + feature.properties.value;
-                    layer.bindPopup(popupContent);
-                }
-            }).addTo(map);
+        var timeline = L.timeline(timelineData, {
+            style: function (feature) {
+                return {
+                    stroke: true,
+                    color: "white",
+                    weight: 1, 
+                    fillColor: getColor(feature.properties.value),
+                    fillOpacity: 1,
+                };
+            },
+            waitToUpdateMap: true,
+            onEachFeature: function (feature, layer) {
+                layer.bindTooltip("Economy: " + feature.properties.economy + "<br>Value: " + feature.properties.value);
+            },
+        });
 
-            // Function to get color based on value
-            function getColor(value) {
-                // Define color range and return color based on value
-                // You can modify this function to define your own color range
-                return value > 90 ? '#800026' :
-                    value > 80 ? '#BD0026' :
-                        value > 70 ? '#E31A1C' :
-                            value > 60 ? '#FC4E2A' :
-                                value > 50 ? '#FD8D3C' :
-                                    value > 40 ? '#FEB24C' :
-                                        value > 30 ? '#FED976' :
-                                            '#FFEDA0';
-            }
+        var timelineControl = L.timelineSliderControl({
+            formatOutput: function (date) {
+                return new Date(date * 1000).getFullYear(); // Convert Unix time to milliseconds
+            },
+            enableKeyboardControls: true
+        });
 
-            
+        timeline.addTo(map);
+        timelineControl.addTo(map);
+        timelineControl.addTimelines(timeline);
     </script>
 </body>
 </html>
