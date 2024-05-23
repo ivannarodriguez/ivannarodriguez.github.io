@@ -40,7 +40,8 @@
             background-color: rgba(0, 0, 0, 0.6);
             padding: 10px;
             border-radius: 2px;
-            max-width: calc(100% - 220px);
+            max-width: 360px;
+            height: auto; 
             font-family: 'Roboto', sans-serif;
             z-index: 1000; /* to ensure it's above the map */
         }
@@ -63,7 +64,7 @@
         .legend {
             position: absolute;
             left: 50px;
-            top:50%;
+            top:70%;
             transform: translateY(-50%);
             background-color: rgba(255, 254, 254, 0.717);
             padding: 10px;
@@ -82,6 +83,10 @@
             display: inline-block;
             margin-right: 5px;
         }
+
+        .custom-control a {
+            color: lightblue;
+        }
     </style>
 
 </head>
@@ -90,8 +95,12 @@
 
     <!-- top left title black box -->
     <div class="custom-control">
-        <h2>WBL Indicators Through The Years</h2>
-        <p>A short paragraph description goes here...</p>
+        <h2>Women, Business, and the Law Indicators Through The Years</h2>
+        <p>The Women, Business and the Law (WBL) indicators measure legal differences between men and women. Scores range from 0
+    to 100, with higher values indicating greater equality. Learn more on the <a href="https://wbl.worldbank.org/">World
+        Bank WBL page</a>. Hover over the map to see the WBL Index in the tooltip. Use the timeline below to observe
+    changes over time.</p>
+
     </div>
 
     <!-- legend -->
@@ -136,7 +145,7 @@
         var map = L.map("map", {
                 layers: [basemap],
                 center: new L.LatLng(17.407264062590677, -42.04405811231499),
-                zoom: 3,
+                zoom: 2,
             });
         
         map.zoomControl.setPosition('topright');
@@ -159,7 +168,7 @@
             },
             waitToUpdateMap: true,
             onEachFeature: function (feature, layer) {
-                layer.bindTooltip("Economy: " + feature.properties.economy + "<br>Value: " + feature.properties.value);
+                layer.bindTooltip("<h2>" + feature.properties.economy + "</h2><h3>WBL Index: " + feature.properties.value + "</h3>");
             },
         });
 
