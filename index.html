@@ -38,12 +38,15 @@
 
         a {
             color: inherit;
+            text-decoration-style: dotted;
+            text-decoration-thickness: 1px;
             text-underline-offset: 0.25rem;
         }
 
         .navbar {
             background: rgba(244, 239, 233, 0.92);
             backdrop-filter: blur(12px);
+            border-bottom: 1px dotted rgba(31, 34, 36, 0.28);
         }
 
         .nav-link,
@@ -63,11 +66,11 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 1px;
-            background: #000000;
+            height: 0;
+            border-bottom: 1px dotted #000000;
             transform: scaleX(0);
             transform-origin: left center;
-            transition: transform 180ms ease, background-color 160ms ease 160ms;
+            transition: transform 180ms ease, border-color 160ms ease 160ms;
         }
 
         .nav-link::after {
@@ -89,7 +92,7 @@
         .nav-link:focus-visible::after,
         .connect-link:hover span::after,
         .connect-link:focus-visible span::after {
-            background: var(--site-salmon);
+            border-color: var(--site-salmon);
             transform: scaleX(1);
         }
 
@@ -178,7 +181,7 @@
             position: absolute;
             z-index: 2;
             display: block;
-            background: #000000;
+            color: #000000;
             pointer-events: none;
         }
 
@@ -194,28 +197,46 @@
             height: 0;
         }
 
+        .project-border-top,
+        .project-border-bottom {
+            background: repeating-linear-gradient(
+                to right,
+                currentColor 0 2px,
+                transparent 2px 6px
+            );
+        }
+
+        .project-border-right,
+        .project-border-left {
+            background: repeating-linear-gradient(
+                to bottom,
+                currentColor 0 2px,
+                transparent 2px 6px
+            );
+        }
+
         .project-border-top {
             top: 0;
             left: 0;
-            transition: width 160ms ease, background-color 180ms ease 640ms;
+            transition: width 160ms ease, color 180ms ease 640ms;
         }
 
         .project-border-right {
             top: 0;
             right: 0;
-            transition: height 160ms ease 160ms, background-color 180ms ease 640ms;
+            transition: height 160ms ease 160ms, color 180ms ease 640ms;
         }
 
         .project-border-bottom {
             right: 0;
             bottom: 0;
-            transition: width 160ms ease 320ms, background-color 180ms ease 640ms;
+            transition: width 160ms ease 320ms, color 180ms ease 640ms;
         }
 
         .project-border-left {
             bottom: 0;
             left: 0;
-            transition: height 160ms ease 480ms, background-color 180ms ease 640ms;
+            transition: height 160ms ease 480ms, color 180ms ease 640ms;
         }
 
         .project-card:hover .project-border-top,
@@ -234,7 +255,7 @@
 
         .project-card:hover .project-border,
         .project-card:focus-visible .project-border {
-            background: var(--site-salmon);
+            color: var(--site-salmon);
         }
 
         .project-img {
