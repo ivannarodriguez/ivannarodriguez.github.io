@@ -60,12 +60,19 @@
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -0.18rem;
             height: 1px;
             background: #000000;
             transform: scaleX(0);
             transform-origin: left center;
-            transition: transform 180ms ease;
+            transition: transform 180ms ease, background-color 160ms ease 160ms;
+        }
+
+        .nav-link::after {
+            bottom: 0.38rem;
+        }
+
+        .connect-link span::after {
+            bottom: -0.05rem;
         }
 
         .nav-link:hover,
@@ -79,6 +86,7 @@
         .nav-link:focus-visible::after,
         .connect-link:hover span::after,
         .connect-link:focus-visible span::after {
+            background: var(--site-salmon);
             transform: scaleX(1);
         }
 
@@ -220,19 +228,8 @@
             display: inline-flex;
             align-items: center;
             gap: 0.55rem;
-            min-height: 44px;
-            padding: 0.65rem 1rem;
-            border: 1px solid var(--site-line);
-            border-radius: 0;
-            background: var(--site-card);
             color: var(--site-ink);
             text-decoration: none;
-        }
-
-        .connect-link:hover,
-        .connect-link:focus-visible {
-            border-color: var(--site-salmon);
-            background: var(--site-card-strong);
         }
 
         .connect-link .bi {
