@@ -47,14 +47,16 @@
             border-bottom: 1px solid var(--site-line);
         }
 
-        .nav-link,
         .connect-link span {
             position: relative;
+        }
+
+        .nav-link,
+        .connect-link span {
             color: var(--site-ink);
             transition: color 160ms ease 160ms;
         }
 
-        .nav-link::after,
         .connect-link span::after {
             content: "";
             position: absolute;
@@ -65,10 +67,6 @@
             transform: scaleX(0);
             transform-origin: left center;
             transition: transform 180ms ease, background-color 160ms ease 160ms;
-        }
-
-        .nav-link::after {
-            bottom: 0.38rem;
         }
 
         .connect-link span::after {
@@ -82,8 +80,6 @@
             color: var(--site-salmon);
         }
 
-        .nav-link:hover::after,
-        .nav-link:focus-visible::after,
         .connect-link:hover span::after,
         .connect-link:focus-visible span::after {
             background: var(--site-salmon);
