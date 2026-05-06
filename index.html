@@ -1,126 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ivanna Rodríguez</title>
-    <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- lux bootswatch theme -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="styles/bootstrap.css" rel="stylesheet">
-    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
     <link rel="manifest" href="img/site.webmanifest">
-    <!-- custom css -->
     <style>
         :root {
-            /* set a linear gradient background */
-            /* --bs-body-bg: linear-gradient(to right, #ffb3ba, #ece6ff, #ffffb7); */
-            --bs-body-bg: #C3C8CC;
+            --site-bg: #C3C8CC;
+            --site-ink: #1f2224;
+            --site-muted: #4e555b;
+            --site-card: rgba(255, 255, 255, 0.58);
+            --site-card-strong: rgba(255, 255, 255, 0.78);
+            --site-line: rgba(31, 34, 36, 0.14);
+            --site-salmon: #FA8072;
+            --site-salmon-soft: rgba(250, 128, 114, 0.82);
+            --section-space: clamp(3.5rem, 8vw, 6rem);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bs-body-bg);
-            /* set background size to cover to avoid any issue with gradient stretch- cover entire page */
-            background-size: cover;
             margin: 0;
-            scroll-behavior: smooth; /* enable smooth scrolling for navbar */
+            background: var(--site-bg);
+            color: var(--site-ink);
+        }
+
+        a {
+            color: inherit;
+            text-underline-offset: 0.25rem;
+        }
+
+        a:hover,
+        a:focus-visible {
+            color: var(--site-salmon);
         }
 
         .navbar {
-            background: var(--bs-body-bg);
-            background-size: cover;
-            background-color: transparent;
-        }
-        
-        p {
-            padding-left: 100px; 
-            padding-right: 100px; 
+            background: rgba(195, 200, 204, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--site-line);
         }
 
-        a:hover {
-            color: #FA8072;
+        .site-section {
+            padding: var(--section-space) 0 0;
         }
-        
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--site-muted);
+        }
+
+        .hero {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 1rem auto 0;
+            font-size: 1.05rem;
+        }
+
         .circular-img {
-            width: 190px; 
-            height: 190px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            display: block; 
-            margin: 0 auto 20px;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--site-card-strong);
         }
 
-        /* to display the salmon box overlays for the projects section */
-        .grid-item {
-            position: relative;
-            margin-bottom: 30px; 
+        .projects-list {
+            display: grid;
+            gap: 1rem;
         }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background-color: rgba(250, 128, 114, 0.7); /* Salmon color with opacity */
+        .project-card {
+            display: grid;
+            grid-template-columns: minmax(180px, 32%) 1fr;
+            min-height: 190px;
+            overflow: hidden;
+            border: 1px solid var(--site-line);
+            border-radius: 8px;
+            background: var(--site-card);
+            color: inherit;
+            text-decoration: none;
+            transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+        }
+
+        .project-card:hover,
+        .project-card:focus-visible {
+            border-color: rgba(250, 128, 114, 0.95);
+            background: var(--site-salmon-soft);
             color: #ffffff;
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.3s; /* Smooth transition */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            transform: translateY(-2px);
         }
 
-        .grid-item:hover .overlay {
-            opacity: 1; /* Show overlay on hover */
-        }
-
-        .overlay-content {
-            color: white; /* Text color */
-            font-size: 18px; /* Text size */
-            font-weight: bold; /* Text weight */
-            padding: 10px; /* Padding around text */
-        }
-
-        /* .grid-item {
-            width: 90%;
-            height: auto;
-        } */
-
-        .project-section {
-            padding-left: 100px; 
-            padding-right: 100px; 
+        .project-card:hover .project-meta,
+        .project-card:focus-visible .project-meta {
+            color: rgba(255, 255, 255, 0.88);
         }
 
         .project-img {
-            width: 100%; /* Set the desired width */
-            height: 200px; /* Set the desired height */
-            object-fit: cover; /* Ensures the image scales properly */
-            display: block; /* Center the image within the container */
-            margin: 0 auto; /* Center the image horizontally */
+            width: 100%;
+            height: 100%;
+            min-height: 190px;
+            object-fit: cover;
+            display: block;
         }
 
+        .project-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.65rem;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            text-align: left;
+        }
+
+        .project-copy h3 {
+            margin: 0;
+            font-size: clamp(1.25rem, 3vw, 1.65rem);
+            letter-spacing: 0;
+        }
+
+        .project-copy p {
+            margin: 0;
+            color: inherit;
+        }
+
+        .project-meta {
+            margin: 0;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--site-muted);
+        }
+
+        .connect-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: var(--section-space);
+        }
+
+        .connect-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            min-height: 44px;
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--site-line);
+            border-radius: 8px;
+            background: var(--site-card);
+            color: var(--site-ink);
+            text-decoration: none;
+        }
+
+        .connect-link:hover,
+        .connect-link:focus-visible {
+            border-color: var(--site-salmon);
+            background: var(--site-card-strong);
+        }
+
+        .connect-link .bi {
+            font-size: 1.25rem;
+            color: #000000;
+        }
+
+        @media (max-width: 767.98px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-img {
+                aspect-ratio: 16 / 9;
+                min-height: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="/">Ivanna Rodríguez</a>
 
-            <!-- navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- navbar links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -137,121 +225,112 @@
         </div>
     </nav>
 
-    <!-- main  -->
-    <div id="about" class="container pt-5 text-center">
-        <!-- circular pro pic -->
-        <img src="img/photo.jpg" alt="A black and white profile picture displaying a woman sipping on coffee" class="circular-img">
-    
-        <!-- Heading -->
-        <h1 id="typed-heading"></h1>
-    
-        <!-- Paragraphs -->
-        <p> I'm a full-stack data scientist passionate about designing, building, and utilizing 
-            analytics tools to encourage inclusive and sustainable socioeconomic development. 
-            I'm also a 
-            graduate student in <a href="https://capp.uchicago.edu/" target="_blank">Computer
-            Science and Public Policy</a> at the University of Chicago.</p> 
-            
-        <p>I currently work as a Research Engineer in the Department of Ecology & 
-            Evolution with <a href="https://eegraduate.uchicago.edu/faculty/luis-bettencourt-phd" target="_blank">
-            Luis Bettencourt's</a> Urban Science Lab, where we use information theory methods to study 
-            inequality within cities.</p>
-    </div>
+    <main>
+        <section id="about" class="site-section">
+            <div class="container text-center hero">
+                <img src="img/photo.jpg" alt="A black and white profile picture displaying a woman sipping on coffee" class="circular-img">
+                <h1 id="typed-heading"></h1>
 
-    <!-- projects section -->
-    <div id="projects" class="container pt-5 text-center project-section">
-        <h4>Projects</h4>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="grid-item">
-                    <a href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank">
-                        <img src="img/proj_period.png" alt="Image of map for measuring menstrual poverty project" class="img-fluid project-img">
-                        <div class="overlay">Measuring Menstrual Poverty in Chicago</div>
+                <p>
+                    I'm a full-stack data scientist passionate about designing, building, and utilizing
+                    analytics tools to encourage inclusive and sustainable socioeconomic development. I'm also a
+                    graduate student in <a href="https://capp.uchicago.edu/" target="_blank" rel="noopener">Computer
+                    Science and Public Policy</a> at the University of Chicago.
+                </p>
+
+                <p>
+                    I currently work as a Research Engineer in the Department of Ecology &amp;
+                    Evolution with <a href="https://eegraduate.uchicago.edu/faculty/luis-bettencourt-phd" target="_blank" rel="noopener">
+                    Luis Bettencourt's</a> Urban Science Lab, where we use information theory methods to study
+                    inequality within cities.
+                </p>
+            </div>
+        </section>
+
+        <section id="projects" class="site-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading">Projects</h2>
+                </div>
+
+                <div class="projects-list">
+                    <a class="project-card" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
+                        <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img">
+                        <div class="project-copy">
+                            <p class="project-meta">Data visualization - Public policy</p>
+                            <h3>Measuring Menstrual Poverty in Chicago</h3>
+                            <p>
+                                A policy-focused mapping project exploring access gaps and neighborhood-level
+                                indicators related to menstrual poverty in Chicago.
+                            </p>
+                        </div>
+                    </a>
+
+                    <a class="project-card" href="https://ivannarodriguez.github.io/opt_timeline/" target="_blank" rel="noopener">
+                        <img src="img/proj_opt.png" alt="Diagram from the OPT Timeline project" class="project-img">
+                        <div class="project-copy">
+                            <p class="project-meta">Interactive explainer - Immigration</p>
+                            <h3>OPT Timeline</h3>
+                            <p>
+                                An interactive timeline that clarifies the Optional Practical Training process
+                                and makes a complex immigration workflow easier to follow.
+                            </p>
+                        </div>
+                    </a>
+
+                    <a class="project-card" href="https://github.com/ivannarodriguez/predicting_pneumonia" target="_blank" rel="noopener">
+                        <img src="img/proj_pneumonia.png" alt="Chest X-ray image from the Predicting Pneumonia project" class="project-img">
+                        <div class="project-copy">
+                            <p class="project-meta">Machine learning - Health</p>
+                            <h3>Predicting Pneumonia</h3>
+                            <p>
+                                A computer vision project using chest X-ray imagery to classify pneumonia risk
+                                and explore model performance in a health context.
+                            </p>
+                        </div>
                     </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="grid-item">
-                    <a href="https://ivannarodriguez.github.io/opt_timeline/" target="_blank">
-                        <img src="img/proj_opt.png" alt="Image of the diagram I created for my OPT Timeline Project" class="img-fluid project-img">
-                        <div class="overlay">OPT Timeline</div>
+        </section>
+
+        <section id="connect" class="site-section">
+            <div class="container text-center">
+                <h2 class="section-heading">Connect</h2>
+                <div class="connect-links">
+                    <a class="connect-link" href="https://www.linkedin.com/in/ivanna-rodriguezrz/" target="_blank" rel="noopener">
+                        <i class="bi bi-linkedin" aria-hidden="true"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a class="connect-link" href="https://github.com/ivannarodriguez" target="_blank" rel="noopener">
+                        <i class="bi bi-github" aria-hidden="true"></i>
+                        <span>GitHub</span>
                     </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="grid-item">
-                    <a href="https://github.com/ivannarodriguez/predicting_pneumonia" target="_blank">
-                        <img src="img/proj_pneumonia.png" alt="image of chest xray" class="img-fluid project-img">
-                        <div class="overlay">Predicting Pneumonia</div>
-                    </a>
-                </div> 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="grid-item">
-                    <!-- <a href="" target="_blank">
-                        <img src="img/" alt="" class="img-fluid project-img">
-                        <div class="overlay"></div> -->
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="grid-item">
-                
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="grid-item">
-                
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <!-- Connect section -->
-    <div id="connect" class="container pt-5 text-center">
-        <h4>Connect</h4>
-        <br>
-        <div>
-            <p>
-                <a href="https://www.linkedin.com/in/ivanna-rodriguezrz/" target="_blank">LinkedIn</a>
-            </p>
-            <p>
-                <a href="https://github.com/ivannarodriguez" target="_blank">GitHub</a>
-            </p>
-            <br>
-        </div>
-    </div>
-
-    <!-- bootstrap js and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <!-- custom JavaScript -->
     <script>
-        // Function to type text letter by letter 
-            function typeText(element, text, speed) {
-                let index = 0;
-                const type = () => {
-                    if (index < text.length) {
-                        element.textContent += text[index];
-                        index++;
-                        setTimeout(type, speed);
-                    } 
-                };
-                type();
-            }
+        function typeText(element, text, speed) {
+            let index = 0;
 
-            // Set up the typed effect on the h1 element with ID 'typed-heading'
+            const type = () => {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index += 1;
+                    setTimeout(type, speed);
+                }
+            };
+
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
             const headingElement = document.getElementById('typed-heading');
-            const headingText = "Hello, I'm Ivanna.";
-            const typingSpeed = 100; 
-
-            // Start typing when the DOM is fully loaded
-            document.addEventListener('DOMContentLoaded', function () {
-                typeText(headingElement, headingText, typingSpeed);
-            });
+            typeText(headingElement, "Hello, I'm Ivanna.", 100);
+        });
     </script>
 </body>
 
