@@ -41,15 +41,50 @@
             text-underline-offset: 0.25rem;
         }
 
-        a:hover,
-        a:focus-visible {
-            color: var(--site-salmon);
-        }
-
         .navbar {
             background: rgba(195, 200, 204, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--site-line);
+        }
+
+        .nav-link,
+        .connect-link span {
+            position: relative;
+            color: var(--site-ink);
+            transition: color 160ms ease 160ms;
+        }
+
+        .nav-link::after,
+        .connect-link span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -0.18rem;
+            height: 1px;
+            background: #000000;
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 180ms ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible,
+        .connect-link:hover span,
+        .connect-link:focus-visible span {
+            color: var(--site-salmon);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus-visible::after,
+        .connect-link:hover span::after,
+        .connect-link:focus-visible span::after {
+            transform: scaleX(1);
+        }
+
+        #about a:hover,
+        #about a:focus-visible {
+            color: var(--site-salmon);
         }
 
         .navbar-toggler {
