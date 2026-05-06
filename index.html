@@ -52,6 +52,17 @@
             border-bottom: 1px solid var(--site-line);
         }
 
+        .navbar-toggler {
+            border: 0;
+            padding: 0.35rem 0;
+        }
+
+        .navbar-toggler:focus,
+        .navbar-toggler:active {
+            box-shadow: none;
+            outline: 0;
+        }
+
         .site-section {
             padding: var(--section-space) 0 0;
         }
@@ -329,6 +340,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             const headingElement = document.getElementById('typed-heading');
             typeText(headingElement, "Hello, I'm Ivanna.", 100);
+
+            document.querySelector('.navbar-toggler').addEventListener('click', function () {
+                this.blur();
+            });
         });
     </script>
 </body>
