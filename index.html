@@ -193,6 +193,7 @@
             background: transparent;
             color: inherit;
             text-decoration: none;
+            text-align: left;
             transition: box-shadow 180ms ease, transform 180ms ease;
         }
 
@@ -210,10 +211,12 @@
         }
 
         .project-copy {
+            align-items: flex-start;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 0.65rem;
+            min-height: 100%;
             padding: clamp(1.25rem, 3vw, 2rem);
             text-align: left;
         }
