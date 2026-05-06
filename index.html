@@ -38,7 +38,7 @@
 
         a {
             color: inherit;
-            text-decoration-style: dotted;
+            text-decoration-style: solid;
             text-decoration-thickness: 1px;
             text-underline-offset: 0.25rem;
         }
@@ -46,7 +46,7 @@
         .navbar {
             background: rgba(244, 239, 233, 0.92);
             backdrop-filter: blur(12px);
-            border-bottom: 1px dotted rgba(31, 34, 36, 0.28);
+            border-bottom: 1px solid rgba(31, 34, 36, 0.18);
             padding-bottom: 0.25rem;
         }
 
@@ -68,7 +68,7 @@
             left: 0;
             right: 0;
             height: 0;
-            border-bottom: 1px dotted #000000;
+            border-bottom: 1px solid #000000;
             transform: scaleX(0);
             transform-origin: left center;
             transition: transform 180ms ease, border-color 160ms ease 160ms;
@@ -170,49 +170,13 @@
             background: transparent;
             color: inherit;
             text-decoration: none;
-            transition: transform 180ms ease;
+            transition: box-shadow 180ms ease, transform 180ms ease;
         }
 
         .project-card:hover,
         .project-card:focus-visible {
-            transform: translateY(-2px);
-        }
-
-        .project-border {
-            position: absolute;
-            z-index: 2;
-            display: block;
-            color: #000000;
-            pointer-events: none;
-        }
-
-        .project-border-bottom {
-            height: 2px;
-            width: 0;
-        }
-
-        .project-border-bottom {
-            background: repeating-linear-gradient(
-                to right,
-                currentColor 0 2px,
-                transparent 2px 6px
-            );
-        }
-
-        .project-border-bottom {
-            left: 0;
-            bottom: 0;
-            transition: width 220ms ease, color 180ms ease 220ms;
-        }
-
-        .project-card:hover .project-border-bottom,
-        .project-card:focus-visible .project-border-bottom {
-            width: 100%;
-        }
-
-        .project-card:hover .project-border,
-        .project-card:focus-visible .project-border {
-            color: var(--site-salmon);
+            box-shadow: -10px 10px 0 #000000;
+            transform: translate(6px, -6px);
         }
 
         .project-img {
@@ -233,8 +197,9 @@
 
         .project-copy h3 {
             margin: 0;
-            font-size: clamp(1.25rem, 3vw, 1.65rem);
+            font-size: clamp(1.05rem, 2.4vw, 1.35rem);
             letter-spacing: 0;
+            text-transform: none;
             transition: color 180ms ease;
         }
 
@@ -349,7 +314,6 @@
 
                 <div class="projects-list">
                     <a class="project-card" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
-                        <span class="project-border project-border-bottom" aria-hidden="true"></span>
                         <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Data visualization</p>
@@ -362,7 +326,6 @@
                     </a>
 
                     <a class="project-card" href="https://ivannarodriguez.github.io/opt_timeline/" target="_blank" rel="noopener">
-                        <span class="project-border project-border-bottom" aria-hidden="true"></span>
                         <img src="img/proj_opt.png" alt="Diagram from the OPT Timeline project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Interactive explainer</p>
@@ -375,7 +338,6 @@
                     </a>
 
                     <a class="project-card" href="https://github.com/ivannarodriguez/predicting_pneumonia" target="_blank" rel="noopener">
-                        <span class="project-border project-border-bottom" aria-hidden="true"></span>
                         <img src="img/proj_pneumonia.png" alt="Chest X-ray image from the Predicting Pneumonia project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Computer vision</p>
