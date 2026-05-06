@@ -284,13 +284,32 @@
 
         @media (max-width: 767.98px) {
             .project-card {
+                gap: 1rem;
                 grid-template-columns: 1fr;
                 height: auto;
                 min-height: 0;
+                overflow: visible;
+            }
+
+            .project-card:hover,
+            .project-card:focus-visible {
+                box-shadow: none;
+                transform: none;
             }
 
             .project-img {
                 aspect-ratio: 16 / 9;
+                height: auto;
+            }
+
+            .project-img--period,
+            .project-copy,
+            .project-card--period .project-copy {
+                transform: none;
+            }
+
+            .project-copy {
+                padding: 0 0 1.5rem;
             }
         }
     </style>
