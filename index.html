@@ -209,7 +209,13 @@
             height: 100%;
             align-self: stretch;
             object-fit: cover;
+            object-position: center;
             display: block;
+        }
+
+        .project-img--period {
+            object-position: center 58%;
+            transform: scale(1.03);
         }
 
         .project-copy {
@@ -221,6 +227,11 @@
             gap: 0.65rem;
             padding: clamp(1.25rem, 3vw, 2rem);
             text-align: left;
+            transform: translateY(-0.25rem);
+        }
+
+        .project-card--period .project-copy {
+            transform: translateY(-0.6rem);
         }
 
         .project-copy h3 {
@@ -341,8 +352,8 @@
                 </div>
 
                 <div class="projects-list">
-                    <a class="project-card" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
-                        <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img">
+                    <a class="project-card project-card--period" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
+                        <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img project-img--period">
                         <div class="project-copy">
                             <p class="project-meta">Data visualization</p>
                             <h3>Measuring Menstrual Poverty in Chicago</h3>
@@ -365,14 +376,14 @@
                         </div>
                     </a>
 
-                    <a class="project-card" href="https://github.com/ivannarodriguez/predicting_pneumonia" target="_blank" rel="noopener">
-                        <img src="img/proj_pneumonia.png" alt="Chest X-ray image from the Predicting Pneumonia project" class="project-img">
+                    <a class="project-card" href="https://github.com/ivannarodriguez/identifying-deforestation" target="_blank" rel="noopener">
+                        <img src="img/proj_deforestation.avif" alt="Satellite image from the Predicting Deforestation project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Computer vision</p>
-                            <h3>Predicting Pneumonia</h3>
+                            <h3>Predicting Deforestation</h3>
                             <p>
-                                A computer vision project using chest X-ray imagery to classify pneumonia risk
-                                and explore model performance in a health context.
+                                A computer vision project using satellite imagery to identify signs of
+                                deforestation and support environmental monitoring.
                             </p>
                         </div>
                     </a>
