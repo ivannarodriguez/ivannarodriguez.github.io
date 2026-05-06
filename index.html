@@ -218,6 +218,10 @@
             transform: scale(1.03);
         }
 
+        .project-img--grayscale {
+            filter: grayscale(1);
+        }
+
         .project-copy {
             align-items: flex-start;
             align-self: center;
@@ -377,13 +381,13 @@
                     </a>
 
                     <a class="project-card" href="https://github.com/ivannarodriguez/identifying-deforestation" target="_blank" rel="noopener">
-                        <img src="img/proj_deforestation.avif" alt="Satellite image from the Predicting Deforestation project" class="project-img">
+                        <img src="img/proj_deforestation.avif" alt="Satellite image from the Predicting Deforestation project" class="project-img project-img--grayscale">
                         <div class="project-copy">
                             <p class="project-meta">Computer vision</p>
                             <h3>Predicting Deforestation</h3>
                             <p>
                                 A computer vision project using satellite imagery to identify signs of
-                                deforestation and support environmental monitoring.
+                                deforestation in the Amazon basin.
                             </p>
                         </div>
                     </a>
