@@ -213,21 +213,19 @@
             display: block;
         }
 
-        .project-img--period {
-            object-position: center;
-        }
-
         .project-img--grayscale {
             filter: grayscale(1);
         }
 
         .project-copy {
             align-items: flex-start;
-            align-self: center;
+            align-self: stretch;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 0.65rem;
+            height: 100%;
             padding: clamp(1.25rem, 3vw, 2rem);
             text-align: left;
         }
@@ -298,9 +296,7 @@
                 height: auto;
             }
 
-            .project-img--period,
-            .project-copy,
-            .project-card--period .project-copy {
+            .project-copy {
                 transform: none;
             }
 
@@ -371,8 +367,8 @@
                 </div>
 
                 <div class="projects-list">
-                    <a class="project-card project-card--period" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
-                        <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img project-img--period project-img--grayscale">
+                    <a class="project-card" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
+                        <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img project-img--grayscale">
                         <div class="project-copy">
                             <p class="project-meta">Data visualization</p>
                             <h3>Measuring Menstrual Poverty in Chicago</h3>
