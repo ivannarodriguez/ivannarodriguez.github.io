@@ -15,12 +15,12 @@
     <link rel="manifest" href="img/site.webmanifest">
     <style>
         :root {
-            --site-bg: #C3C8CC;
+            --site-bg: #F4EFE9;
             --site-ink: #1f2224;
-            --site-muted: #4e555b;
-            --site-card: rgba(255, 255, 255, 0.38);
-            --site-card-strong: rgba(255, 255, 255, 0.54);
-            --site-line: rgba(31, 34, 36, 0.14);
+            --site-muted: #5c5a56;
+            --site-card: rgba(255, 255, 255, 0.42);
+            --site-card-strong: rgba(255, 255, 255, 0.58);
+            --site-line: rgba(31, 34, 36, 0.12);
             --site-salmon: #FA8072;
             --site-salmon-soft: rgba(250, 128, 114, 0.82);
             --section-space: clamp(3.5rem, 8vw, 6rem);
@@ -42,7 +42,7 @@
         }
 
         .navbar {
-            background: rgba(195, 200, 204, 0.92);
+            background: rgba(244, 239, 233, 0.92);
             backdrop-filter: blur(12px);
         }
 
@@ -116,6 +116,10 @@
 
         .site-section {
             padding: var(--section-space) 0 0;
+        }
+
+        #about.site-section {
+            padding-top: clamp(1.5rem, 3vw, 2.5rem);
         }
 
         .section-heading {
