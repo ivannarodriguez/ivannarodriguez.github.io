@@ -47,6 +47,7 @@
             background: rgba(244, 239, 233, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px dotted rgba(31, 34, 36, 0.28);
+            padding-bottom: 0.25rem;
         }
 
         .nav-link,
@@ -185,19 +186,11 @@
             pointer-events: none;
         }
 
-        .project-border-top,
         .project-border-bottom {
             height: 2px;
             width: 0;
         }
 
-        .project-border-right,
-        .project-border-left {
-            width: 2px;
-            height: 0;
-        }
-
-        .project-border-top,
         .project-border-bottom {
             background: repeating-linear-gradient(
                 to right,
@@ -206,51 +199,15 @@
             );
         }
 
-        .project-border-right,
-        .project-border-left {
-            background: repeating-linear-gradient(
-                to bottom,
-                currentColor 0 2px,
-                transparent 2px 6px
-            );
-        }
-
-        .project-border-top {
-            top: 0;
-            left: 0;
-            transition: width 160ms ease, color 180ms ease 640ms;
-        }
-
-        .project-border-right {
-            top: 0;
-            right: 0;
-            transition: height 160ms ease 160ms, color 180ms ease 640ms;
-        }
-
         .project-border-bottom {
-            right: 0;
-            bottom: 0;
-            transition: width 160ms ease 320ms, color 180ms ease 640ms;
-        }
-
-        .project-border-left {
-            bottom: 0;
             left: 0;
-            transition: height 160ms ease 480ms, color 180ms ease 640ms;
+            bottom: 0;
+            transition: width 220ms ease, color 180ms ease 220ms;
         }
 
-        .project-card:hover .project-border-top,
-        .project-card:focus-visible .project-border-top,
         .project-card:hover .project-border-bottom,
         .project-card:focus-visible .project-border-bottom {
             width: 100%;
-        }
-
-        .project-card:hover .project-border-right,
-        .project-card:focus-visible .project-border-right,
-        .project-card:hover .project-border-left,
-        .project-card:focus-visible .project-border-left {
-            height: 100%;
         }
 
         .project-card:hover .project-border,
@@ -392,10 +349,7 @@
 
                 <div class="projects-list">
                     <a class="project-card" href="https://github.com/uchicago-mscapp-projects/maroon-justice-index" target="_blank" rel="noopener">
-                        <span class="project-border project-border-top" aria-hidden="true"></span>
-                        <span class="project-border project-border-right" aria-hidden="true"></span>
                         <span class="project-border project-border-bottom" aria-hidden="true"></span>
-                        <span class="project-border project-border-left" aria-hidden="true"></span>
                         <img src="img/proj_period.png" alt="Map from the Measuring Menstrual Poverty in Chicago project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Data visualization</p>
@@ -408,10 +362,7 @@
                     </a>
 
                     <a class="project-card" href="https://ivannarodriguez.github.io/opt_timeline/" target="_blank" rel="noopener">
-                        <span class="project-border project-border-top" aria-hidden="true"></span>
-                        <span class="project-border project-border-right" aria-hidden="true"></span>
                         <span class="project-border project-border-bottom" aria-hidden="true"></span>
-                        <span class="project-border project-border-left" aria-hidden="true"></span>
                         <img src="img/proj_opt.png" alt="Diagram from the OPT Timeline project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Interactive explainer</p>
@@ -424,10 +375,7 @@
                     </a>
 
                     <a class="project-card" href="https://github.com/ivannarodriguez/predicting_pneumonia" target="_blank" rel="noopener">
-                        <span class="project-border project-border-top" aria-hidden="true"></span>
-                        <span class="project-border project-border-right" aria-hidden="true"></span>
                         <span class="project-border project-border-bottom" aria-hidden="true"></span>
-                        <span class="project-border project-border-left" aria-hidden="true"></span>
                         <img src="img/proj_pneumonia.png" alt="Chest X-ray image from the Predicting Pneumonia project" class="project-img">
                         <div class="project-copy">
                             <p class="project-meta">Computer vision</p>
