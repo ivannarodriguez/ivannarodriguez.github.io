@@ -32,7 +32,11 @@
 
         body {
             margin: 0;
-            background: var(--site-bg);
+            background-color: var(--site-bg);
+            background-image: radial-gradient(rgba(31, 34, 36, 0.16) 1px, transparent 1px);
+            background-attachment: fixed;
+            background-position: 0 0;
+            background-size: 18px 18px;
             color: var(--site-ink);
         }
 
@@ -145,6 +149,19 @@
             max-width: 680px;
             margin: 1rem auto 0;
             font-size: 1.05rem;
+        }
+
+        #typed-heading::after {
+            content: "|";
+            display: inline-block;
+            margin-left: 0.12em;
+            animation: blink-cursor 900ms steps(1) infinite;
+        }
+
+        @keyframes blink-cursor {
+            50% {
+                opacity: 0;
+            }
         }
 
         .circular-img {
@@ -389,7 +406,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             const headingElement = document.getElementById('typed-heading');
-            typeText(headingElement, "Hello, I'm Ivanna.", 100);
+            typeText(headingElement, "Hello, I'm Ivanna", 100);
 
             document.querySelector('.navbar-toggler').addEventListener('click', function () {
                 this.blur();
