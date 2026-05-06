@@ -185,9 +185,8 @@
 
         .project-card {
             position: relative;
-            display: grid;
+            display: flex;
             align-items: center;
-            grid-template-columns: minmax(180px, 32%) 1fr;
             height: 250px;
             overflow: hidden;
             border-radius: 0;
@@ -205,7 +204,9 @@
         }
 
         .project-img {
-            width: 100%;
+            flex: 0 0 32%;
+            max-width: 32%;
+            width: 32%;
             height: 100%;
             align-self: stretch;
             object-fit: cover;
@@ -222,6 +223,7 @@
             align-self: stretch;
             box-sizing: border-box;
             display: flex;
+            flex: 1 1 auto;
             flex-direction: column;
             justify-content: center;
             gap: 0.65rem;
@@ -230,15 +232,21 @@
             text-align: left;
         }
 
+        .project-copy > * {
+            max-width: 46rem;
+        }
+
         .project-copy h3 {
             margin: 0;
             font-size: clamp(1.05rem, 2.4vw, 1.35rem);
             letter-spacing: 0;
+            line-height: 1.25;
             text-transform: none;
             transition: color 180ms ease;
         }
 
         .project-copy p {
+            line-height: 1.45;
             margin: 0;
             color: inherit;
         }
@@ -277,8 +285,8 @@
         @media (max-width: 767.98px) {
             .project-card {
                 background: rgba(255, 250, 244, 0.78);
+                flex-direction: column;
                 gap: 1rem;
-                grid-template-columns: 1fr;
                 height: auto;
                 min-height: 0;
                 overflow: visible;
@@ -293,7 +301,10 @@
 
             .project-img {
                 aspect-ratio: 16 / 9;
+                flex-basis: auto;
                 height: auto;
+                max-width: 100%;
+                width: 100%;
             }
 
             .project-copy {
@@ -301,6 +312,7 @@
             }
 
             .project-copy {
+                align-self: stretch;
                 padding: 0 0.25rem 0.25rem;
             }
         }
